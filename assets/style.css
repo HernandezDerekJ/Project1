@@ -169,7 +169,7 @@ p {
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
-  outline: 2px dashed green;
+  outline: 2px dashed purple;
 
 }
 .blue-column {
