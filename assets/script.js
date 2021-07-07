@@ -5,7 +5,7 @@ var todayDate = new Date().toISOString().slice(0, 10);
 var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
-var urlImage = document.getElementById("backgroundImage");
+var urlImage = document.getElementById("POTD");
 
 console.log(todayDate);
 
@@ -24,6 +24,7 @@ function getPictureOfTheDay() {
       console.log(data.url);
       urlImage.style.backgroundImage = "url("+image+")"
       document.querySelector(".sidenav").style.visibility = "visible";
+      //POTD
     });
 }
 
@@ -33,5 +34,12 @@ function displayStartPage() {
 
 function hideStartPage() {
   container.style.display = "none";
-  urlImage.style.backgroundImage = "none";
+  urlImage.style.backgroundImage = "visable";
+  loadPage();
+}
+function loadPage(){
+  $('#pageContain').show();
+  $('.row').show();
+  $('.column').show();
+
 }

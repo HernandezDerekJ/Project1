@@ -151,3 +151,40 @@ p {
   border-top: 2px solid #f77d3b;
   font-size: 25px;
 }
+#pageContain{
+  display: none;
+  float: right;
+  width: 90%;
+  padding: 10px;
+}
+#rowrowyouboat {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  outline: 2px dashed green;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  outline: 2px dashed purple;
+
+}
+.blue-column {
+  padding: 15%;
+}
+.green-column{
+  padding: 25%;
+}
+.yellow-column{
+  
+}
+#POTD{
+    display: block;
+    width: 100vw;
+    height: 60vh;
+    max-height:100%; max-width:100%;
+    object-fit: contain;
+  }
