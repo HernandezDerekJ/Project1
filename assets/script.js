@@ -23,6 +23,7 @@ function getPictureOfTheDay() {
       image = data.url;
       console.log(data.url);
       urlImage.style.backgroundImage = "url("+image+")"
+      document.querySelector(".sidenav").style.visibility = "visible";
     });
 }
 
