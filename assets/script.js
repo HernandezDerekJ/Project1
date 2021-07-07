@@ -19,7 +19,6 @@ function getPictureOfTheDay() {
     })
     .then(function (data) {
       console.log(data);
-
       hideStartPage();
       image = data.url;
       console.log(data.url);
