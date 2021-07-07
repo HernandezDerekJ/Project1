@@ -5,12 +5,12 @@ var todayDate = new Date().toISOString().slice(0, 10);
 var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
-var backgroundImage = document.getElementById("backgroundImage");
+var urlImage = document.getElementById("backgroundImage");
+
 console.log(todayDate);
 
 searchBar.setAttribute("max", todayDate);
 searchButton.addEventListener("click", getPictureOfTheDay);
-
 function getPictureOfTheDay() {
   hideStartPage();
   fetch(marsPictureUrl + searchBar.value)
@@ -19,16 +19,19 @@ function getPictureOfTheDay() {
     })
     .then(function (data) {
       console.log(data);
+
+      hideStartPage();
+      image = data.url;
+      console.log(data.url);
+      urlImage.style.backgroundImage = "url("+image+")"
     });
 }
 
 function displayStartPage() {
-  container.style.display = "initial";
-  backgroundImage.style.backgroundImage =
-    ' url("./Images/mars-67522_1920.jpg")';
+  //document.body.style.backgroundImage = "url('./assets/images/mars-67522_1920.jpg')";
 }
 
 function hideStartPage() {
   container.style.display = "none";
-  backgroundImage.style.backgroundImage = "none";
+  urlImage.style.backgroundImage = "none";
 }
