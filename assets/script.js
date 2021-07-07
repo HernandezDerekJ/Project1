@@ -1,4 +1,3 @@
-
 var marsPictureUrl =
   "https://api.nasa.gov/planetary/apod?api_key=1EJeSetyiMaPkE6wHYbMaV4RwY0WwDNcCJ2ELejm&thumbs=True&date=";
 var searchBar = document.getElementById("searchBar");
@@ -7,18 +6,20 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("backgroundImage");
+
 console.log(todayDate);
 
 searchBar.setAttribute("max", todayDate);
 searchButton.addEventListener("click", getPictureOfTheDay);
-displayStartPage();
 function getPictureOfTheDay() {
+  hideStartPage();
   fetch(marsPictureUrl + searchBar.value)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
+
       hideStartPage();
       image = data.url;
       console.log(data.url);

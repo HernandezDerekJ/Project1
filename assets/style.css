@@ -3,11 +3,11 @@
   box-sizing: border-box;
 }
 
-
 .header {
   background-image: linear-gradient(15deg, #f77d3b 0%, #862800 100%);
   height: auto;
   text-align: center;
+
   font-size: 3rem;
   color: white;
   z-index: 2;
@@ -32,6 +32,7 @@ p {
   text-decoration: black;
   -webkit-text-fill-color: white;
   -webkit-text-stroke-width: 2px;
+
   -webkit-text-stroke-color: black;
 }
 
@@ -60,7 +61,8 @@ p {
 }
 
 #backgroundImage {
-  background-image: url("./images/mars-67522_1920.jpg");
+
+  background-image: url("./Images/mars-67522_1920.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
