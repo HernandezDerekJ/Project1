@@ -19,11 +19,11 @@ function getPictureOfTheDay() {
     })
     .then(function (data) {
       console.log(data);
-
       hideStartPage();
       image = data.url;
       console.log(data.url);
       urlImage.style.backgroundImage = "url("+image+")"
+      document.querySelector(".sidenav").style.visibility = "visible";
     });
 }
 
