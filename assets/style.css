@@ -96,3 +96,40 @@ p {
   left: 0;
   overflow-x: hidden;
 }
+#pageContain{
+  display: none;
+  float: right;
+  width: 90%;
+  padding: 10px;
+}
+#rowrowyouboat {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  outline: 2px dashed green;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  outline: 2px dashed green;
+
+}
+.blue-column {
+  padding: 15%;
+}
+.green-column{
+  padding: 25%;
+}
+.yellow-column{
+  
+}
+#POTD{
+    display: block;
+    width: 100vw;
+    height: 60vh;
+    max-height:100%; max-width:100%;
+    object-fit: contain;
+  }
