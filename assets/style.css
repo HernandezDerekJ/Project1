@@ -1,13 +1,14 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Space Mono', monospace;
 }
 
 .header {
   background-image: linear-gradient(15deg, #f77d3b 0%, #862800 100%);
   height: auto;
   text-align: center;
-
+  font-family: 'Space Mono', monospace;
   font-size: 3rem;
   color: white;
   z-index: 2;
@@ -173,18 +174,38 @@ p {
 
 }
 .blue-column {
-  padding: 15%;
+  padding: 0;
+  background-image: url("./Images/armageddon-2104385_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+  width: 100%;
+  margin-left: 6rem;
+
 }
+.blue-column p {
+  font-size: 3rem;
+  margin: 0;
+  color: white;
+}
+
+.blue-column h1 {
+  font-size: 4rem;
+  color: white;
+}
+
 .green-column{
   padding: 25%;
 }
-.yellow-column{
+
   
-}
+
 #POTD{
     display: block;
     width: 100vw;
-    height: 60vh;
+    height: 85vh;
     max-height:100%; max-width:100%;
     object-fit: contain;
+    background-position: center;
   }
