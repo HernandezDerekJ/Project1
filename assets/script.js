@@ -7,6 +7,56 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("POTD");
+var secondSearch = document.querySelector(".secondSearch");
+dateArray = [];
+
+
+function localStore(){
+  localStorage.setItem("dateArray",JSON.stringify(dateArray));
+  storedDates = localStorage.getItem("dateArray");
+  for(i=0;i<storedDates.length;i++){
+      if(!storedDates.includes(date)){
+          btn = document.createElement("button");
+          btn.innerHTML = date;
+          btn.setAttribute('class','saved');
+          document.querySelector(".buttonHolder").appendChild(btn);
+      }else{
+          continue;
+      }
+  }
+}
+searchBar.setAttribute("max", todayDate);
+searchButton.addEventListener("click", function(){
+  date = searchBar.value;
+  if(!dateArray.includes(date)){
+    dateArray.push(date);
+    localStore(date);
+  }else{
+    console.log("date has already been entered");
+  }
+  getPictureOfTheDay();
+});
+secondSearch.addEventListener("click", function(){
+  date = searchBar2.value;
+  console.log("this is working")
+  if(!dateArray.includes(date)){
+    dateArray.push(date);
+    localStore(date);
+  }else{
+    console.log("date has already been entered");
+  }
+  getPictureSecond();
+});
+function getPictureSecond(){
+  fetch(marsPictureUrl + searchBar2.value)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      image = data.url;
+      urlImage.style.backgroundImage = "url("+image+")";
+    });
+}
 
 var blueColumn = document.querySelector(".blue-column");
 
@@ -19,6 +69,7 @@ var potdTitle = document.getElementById("title");
 searchBar.setAttribute("max", todayDate);
 searchButton.addEventListener("click", getPictureOfTheDay);
 
+
 function getPictureOfTheDay() {
   hideStartPage();
   asteroidUrl = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${searchBar.value}&end_date=${searchBar.value}&api_key=1EJeSetyiMaPkE6wHYbMaV4RwY0WwDNcCJ2ELejm`;
@@ -27,7 +78,6 @@ function getPictureOfTheDay() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       hideStartPage();
       image = data.url;
       console.log(data.url);
@@ -46,7 +96,7 @@ function getPictureOfTheDay() {
       getAsteroidUrl();
       //POTD
     });
-}
+
 
 function getAsteroidUrl() {
   hideStartPage();
@@ -75,15 +125,14 @@ function getAsteroidUrl() {
     });
 }
 
-function displayStartPage() {
-  //document.body.style.backgroundImage = "url('./assets/images/mars-67522_1920.jpg')";
-}
+
 
 function hideStartPage() {
   container.style.display = "none";
   urlImage.style.backgroundImage = "visible";
   loadPage();
 }
+
 
 function loadPage() {
   $("#pageContain").show();
