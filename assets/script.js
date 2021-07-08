@@ -7,7 +7,14 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("POTD");
+
 var blueColumn = document.querySelector(".blue-column");
+
+var descript = document.getElementById("desciptionPOTD");
+var potdAuthor = document.getElementById("author");
+var potdTitle = document.getElementById("title");
+
+
 
 searchBar.setAttribute("max", todayDate);
 searchButton.addEventListener("click", getPictureOfTheDay);
@@ -25,6 +32,16 @@ function getPictureOfTheDay() {
       image = data.url;
       console.log(data.url);
       urlImage.style.backgroundImage = "url(" + image + ")";
+
+      descript.innerText  = data.explanation;
+      if(checkUndefined(data.title) ){
+        potdTitle.innerHTML = "Author: " + data.title;
+      }
+      if(checkUndefined(data.copyright) ){
+        potdAuthor.innerHTML = "Credit: " + data.copyright
+      }
+      urlImage.style.backgroundImage = "url("+image+")"
+      //POTD Setting
       document.querySelector(".sidenav").style.visibility = "visible";
       getAsteroidUrl();
       //POTD
@@ -64,11 +81,20 @@ function displayStartPage() {
 
 function hideStartPage() {
   container.style.display = "none";
-  urlImage.style.backgroundImage = "visable";
+  urlImage.style.backgroundImage = "visible";
   loadPage();
 }
+
 function loadPage() {
   $("#pageContain").show();
   $(".row").show();
   $(".column").show();
 }
+
+function checkUndefined(x){
+  if(x){
+    return true
+  }
+  return false;
+}
+
