@@ -96,8 +96,8 @@ function getPictureOfTheDay() {
       getAsteroidUrl();
       //POTD
     });
-
-
+  
+}
 function getAsteroidUrl() {
   hideStartPage();
   fetch(asteroidUrl)
