@@ -15,12 +15,19 @@ dateArray = [];
 function localStore(){
   localStorage.setItem("dateArray",JSON.stringify(dateArray));
   storedDates = localStorage.getItem("dateArray");
+  storedArr = [];
   for(i=0;i<storedDates.length;i++){
-      if(!storedDates.includes(date)){
+      if(!storedArr.includes(date)){
           btn = document.createElement("button");
           btn.innerHTML = date;
           btn.setAttribute('class','saved');
+          btn.setAttribute('id', date);
+          btn.addEventListener("click",function(event){
+            event.preventDefault();
+            getPictureSecond(date);
+          });
           document.querySelector(".buttonHolder").appendChild(btn);
+          storedArr.push(date);
       }else{
           continue;
       }
@@ -51,8 +58,8 @@ secondSearch.addEventListener("click", function(event){
 });
 function getPictureSecond(){
   hideStartPage();
-  asteroidUrl = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${searchBar2.value}&end_date=${searchBar2.value}&api_key=1EJeSetyiMaPkE6wHYbMaV4RwY0WwDNcCJ2ELejm`;
-  fetch(marsPictureUrl + searchBar2.value)
+  asteroidUrl = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${date}&end_date=${date}&api_key=1EJeSetyiMaPkE6wHYbMaV4RwY0WwDNcCJ2ELejm`;
+  fetch(marsPictureUrl + date)
     .then(function (response) {
       return response.json();
     })
@@ -153,21 +160,21 @@ function getAsteroidUrl2() {
     .then(function (data) {
       blueColumn.innerHTML = `
       <h1>Asteroid closest to Earth!</h1>
-      <p> Name: ${data.near_earth_objects[searchBar2.value][0].name}</p>
+      <p> Name: ${data.near_earth_objects[date][0].name}</p>
       <p> Velocity: ${parseInt(
-        data.near_earth_objects[searchBar2.value][0].close_approach_data[0]
+        data.near_earth_objects[date][0].close_approach_data[0]
           .relative_velocity.miles_per_hour
       )} miles per hour</p>
       <p> Approach Date: ${
-        data.near_earth_objects[searchBar2.value][0].close_approach_data[0]
+        data.near_earth_objects[date][0].close_approach_data[0]
           .close_approach_date_full
       }</p>
       <p> Size: ${parseInt(
-        data.near_earth_objects[searchBar2.value][0].estimated_diameter.meters
+        data.near_earth_objects[date][0].estimated_diameter.meters
           .estimated_diameter_max
       )} Meters</p>
       `;
-      console.log(data.near_earth_objects[searchBar2.value][0]);
+      console.log(data.near_earth_objects[date][0]);
     });
 }
 
