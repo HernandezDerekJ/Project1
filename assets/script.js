@@ -6,11 +6,55 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("POTD");
+var secondSearch = document.querySelector(".secondSearch");
+dateArray = [];
 
-console.log(todayDate);
-
+function localStore(){
+  localStorage.setItem("dateArray",JSON.stringify(dateArray));
+  storedDates = localStorage.getItem("dateArray");
+  for(i=0;i<storedDates.length;i++){
+      if(!storedDates.includes(date)){
+          btn = document.createElement("button");
+          btn.innerHTML = date;
+          btn.setAttribute('class','saved');
+          document.querySelector(".buttonHolder").appendChild(btn);
+      }else{
+          continue;
+      }
+  }
+}
 searchBar.setAttribute("max", todayDate);
-searchButton.addEventListener("click", getPictureOfTheDay);
+searchButton.addEventListener("click", function(){
+  date = searchBar.value;
+  if(!dateArray.includes(date)){
+    dateArray.push(date);
+    localStore(date);
+  }else{
+    console.log("date has already been entered");
+  }
+  getPictureOfTheDay();
+});
+secondSearch.addEventListener("click", function(){
+  date = searchBar2.value;
+  console.log("this is working")
+  if(!dateArray.includes(date)){
+    dateArray.push(date);
+    localStore(date);
+  }else{
+    console.log("date has already been entered");
+  }
+  getPictureSecond();
+});
+function getPictureSecond(){
+  fetch(marsPictureUrl + searchBar2.value)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      image = data.url;
+      urlImage.style.backgroundImage = "url("+image+")";
+    });
+}
 function getPictureOfTheDay() {
   hideStartPage();
   fetch(marsPictureUrl + searchBar.value)
@@ -18,19 +62,14 @@ function getPictureOfTheDay() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
       hideStartPage();
       image = data.url;
-      console.log(data.url);
       urlImage.style.backgroundImage = "url("+image+")"
       document.querySelector(".sidenav").style.visibility = "visible";
-      //POTD
     });
+
 }
 
-function displayStartPage() {
-  //document.body.style.backgroundImage = "url('./assets/images/mars-67522_1920.jpg')";
-}
 
 function hideStartPage() {
   container.style.display = "none";
@@ -43,3 +82,5 @@ function loadPage(){
   $('.column').show();
 
 }
+
+
