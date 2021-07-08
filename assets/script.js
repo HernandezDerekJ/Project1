@@ -23,8 +23,9 @@ function localStore(){
           btn.setAttribute('class','saved');
           btn.setAttribute('id', date);
           btn.addEventListener("click",function(event){
+            date = btn.id;
+            getPictureSecond();
             event.preventDefault();
-            getPictureSecond(date);
           });
           document.querySelector(".buttonHolder").appendChild(btn);
           storedArr.push(date);
@@ -47,7 +48,6 @@ searchButton.addEventListener("click", function(){
 secondSearch.addEventListener("click", function(event){
   event.preventDefault();
   date = searchBar2.value;
-  console.log("this is working")
   if(!dateArray.includes(date)){
     dateArray.push(date);
     localStore(date);
@@ -66,9 +66,8 @@ function getPictureSecond(){
     .then(function (data) {
       hideStartPage();
       image = data.url;
-      console.log(data.url);
       urlImage.style.backgroundImage = "url(" + image + ")";
-
+      console.log(data);
       descript.innerText  = data.explanation;
       if(checkUndefined(data.title) ){
         potdTitle.innerHTML = "Author: " + data.title;
@@ -107,7 +106,6 @@ function getPictureOfTheDay() {
     .then(function (data) {
       hideStartPage();
       image = data.url;
-      console.log(data.url);
       urlImage.style.backgroundImage = "url(" + image + ")";
 
       descript.innerText  = data.explanation;
@@ -148,7 +146,6 @@ function getAsteroidUrl() {
           .estimated_diameter_max
       )} Meters</p>
       `;
-      console.log(data.near_earth_objects[searchBar.value][0]);
     });
 }
 function getAsteroidUrl2() {
@@ -174,7 +171,6 @@ function getAsteroidUrl2() {
           .estimated_diameter_max
       )} Meters</p>
       `;
-      console.log(data.near_earth_objects[date][0]);
     });
 }
 
