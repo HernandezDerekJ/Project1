@@ -37,7 +37,8 @@ searchButton.addEventListener("click", function(){
   }
   getPictureOfTheDay();
 });
-secondSearch.addEventListener("click", function(){
+secondSearch.addEventListener("click", function(event){
+  event.preventDefault();
   date = searchBar2.value;
   console.log("this is working")
   if(!dateArray.includes(date)){
@@ -49,15 +50,32 @@ secondSearch.addEventListener("click", function(){
   getPictureSecond();
 });
 function getPictureSecond(){
-  console.log("is this working?")
+  hideStartPage();
+  asteroidUrl = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${searchBar2.value}&end_date=${searchBar2.value}&api_key=1EJeSetyiMaPkE6wHYbMaV4RwY0WwDNcCJ2ELejm`;
   fetch(marsPictureUrl + searchBar2.value)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
+      hideStartPage();
       image = data.url;
-      urlImage.style.backgroundImage = "url("+image+")";
+      console.log(data.url);
+      urlImage.style.backgroundImage = "url(" + image + ")";
+
+      descript.innerText  = data.explanation;
+      if(checkUndefined(data.title) ){
+        potdTitle.innerHTML = "Author: " + data.title;
+      }
+      if(checkUndefined(data.copyright) ){
+        potdAuthor.innerHTML = "Credit: " + data.copyright
+      }
+      urlImage.style.backgroundImage = "url("+image+")"
+      //POTD Setting
+      document.querySelector(".sidenav").style.visibility = "visible";
+      getAsteroidUrl2();
+      //POTD
     });
+  
 }
 
 var blueColumn = document.querySelector(".blue-column");
@@ -124,6 +142,32 @@ function getAsteroidUrl() {
       )} Meters</p>
       `;
       console.log(data.near_earth_objects[searchBar.value][0]);
+    });
+}
+function getAsteroidUrl2() {
+  hideStartPage();
+  fetch(asteroidUrl)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      blueColumn.innerHTML = `
+      <h1>Asteroid closest to Earth!</h1>
+      <p> Name: ${data.near_earth_objects[searchBar2.value][0].name}</p>
+      <p> Velocity: ${parseInt(
+        data.near_earth_objects[searchBar2.value][0].close_approach_data[0]
+          .relative_velocity.miles_per_hour
+      )} miles per hour</p>
+      <p> Approach Date: ${
+        data.near_earth_objects[searchBar2.value][0].close_approach_data[0]
+          .close_approach_date_full
+      }</p>
+      <p> Size: ${parseInt(
+        data.near_earth_objects[searchBar2.value][0].estimated_diameter.meters
+          .estimated_diameter_max
+      )} Meters</p>
+      `;
+      console.log(data.near_earth_objects[searchBar2.value][0]);
     });
 }
 
