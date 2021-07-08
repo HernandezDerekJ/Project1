@@ -7,6 +7,7 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("POTD");
+var searchBar2 = document.getElementById("searchBar2")
 var secondSearch = document.querySelector(".secondSearch");
 dateArray = [];
 
@@ -48,6 +49,7 @@ secondSearch.addEventListener("click", function(){
   getPictureSecond();
 });
 function getPictureSecond(){
+  console.log("is this working?")
   fetch(marsPictureUrl + searchBar2.value)
     .then(function (response) {
       return response.json();
@@ -65,7 +67,7 @@ var potdAuthor = document.getElementById("author");
 var potdTitle = document.getElementById("title");
 
 
-
+searchBar2.setAttribute("max",todayDate);
 searchBar.setAttribute("max", todayDate);
 searchButton.addEventListener("click", getPictureOfTheDay);
 
