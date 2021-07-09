@@ -7,6 +7,7 @@ var searchButton = document.getElementById("searchButton");
 var main = document.getElementsByTagName("main")[0];
 var container = document.getElementsByClassName("content")[0];
 var urlImage = document.getElementById("POTD");
+var urlVideo = document.getElementById("iframe");
 var searchBar2 = document.getElementById("searchBar2")
 var secondSearch = document.querySelector(".secondSearch");
 dateArray = [];
@@ -69,7 +70,6 @@ function getPictureSecond() {
         .then(function(data) {
             hideStartPage();
             image = data.url;
-            urlImage.style.backgroundImage = "url(" + image + ")";
             console.log(data);
             descript.innerText = data.explanation;
             if (checkUndefined(data.title)) {
@@ -78,13 +78,27 @@ function getPictureSecond() {
             if (checkUndefined(data.copyright)) {
                 potdAuthor.innerHTML = "Credit: " + data.copyright
             }
-            urlImage.style.backgroundImage = "url(" + image + ")"
-                //POTD Setting
+            if(videoOrImage(data.media_type)){
+                //Image
+                $('.red-column').css("display","none");
+                $('.yellow-column').show();
+                urlImage.style.backgroundImage = "url(" + image + ")";
+                urlVideo.setAttribute('display', "none");
+                urlVideo.removeAttribute('src');
+            }
+            else{
+                //Video   
+                $('.yellow-column').css("display","none");
+                $('.red-column').show();
+                urlVideo.setAttribute('src', data.url);
+                urlImage.setAttribute('display', "none");
+                urlImage.style.backgroundImage = "none";
+            }
+            //POTD Setting
             document.querySelector(".sidenav").style.visibility = "visible";
             getAsteroidUrl2();
             //POTD
         });
-
 }
 var blueColumn = document.querySelector(".blue-column");
 var descript = document.getElementById("desciptionPOTD");
@@ -103,7 +117,6 @@ function getPictureOfTheDay() {
         .then(function(data) {
             hideStartPage();
             image = data.url;
-            urlImage.style.backgroundImage = "url(" + image + ")";
             descript.innerText = data.explanation;
             if (checkUndefined(data.title)) {
                 potdTitle.innerHTML = "Author: " + data.title;
@@ -111,7 +124,22 @@ function getPictureOfTheDay() {
             if (checkUndefined(data.copyright)) {
                 potdAuthor.innerHTML = "Credit: " + data.copyright
             }
-            urlImage.style.backgroundImage = "url(" + image + ")"
+            if(videoOrImage(data.media_type)){
+                //Image
+                $('.red-column').css("display","none");
+                $('.yellow-column').show();
+                urlImage.style.backgroundImage = "url(" + image + ")";
+                urlVideo.setAttribute('display', "none");
+                urlVideo.removeAttribute('src');
+            }
+            else{
+                //Video   
+                $('.yellow-column').css("display","none");
+                $('.red-column').show();
+                urlVideo.setAttribute('src', data.url);
+                urlImage.setAttribute('display', "none");
+                urlImage.style.backgroundImage = "none";
+            }
                 //POTD Setting
             document.querySelector(".sidenav").style.visibility = "visible";
             getAsteroidUrl();
@@ -201,10 +229,11 @@ function sideControl() {
         console.log('WWW');
     }
 }
-function openNav() {
-    document.getElementById("sidenavMobile").style.width = "200px";
-}
-function closeNav() {
-    document.getElementById("sidenavMobile").style.width = "0";
-
+function videoOrImage(x){
+    if(x == "image"){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
