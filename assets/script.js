@@ -84,6 +84,7 @@ function getPictureSecond() {
             getAsteroidUrl2();
             //POTD
         });
+
 }
 var blueColumn = document.querySelector(".blue-column");
 var descript = document.getElementById("desciptionPOTD");
@@ -186,6 +187,7 @@ function checkUndefined(x) {
     }
     return false;
 }
+
 function sideControl() {
     //<span class="close-button" onclick="closeNav()">&times;</span>
     //<span class="close-button" onclick="openNav()">&#9776;</span>
@@ -204,4 +206,5 @@ function openNav() {
 }
 function closeNav() {
     document.getElementById("sidenavMobile").style.width = "0";
+
 }
