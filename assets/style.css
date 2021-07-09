@@ -244,3 +244,114 @@ p {
   margin: 1em 0;
   padding: 0;
 }
+
+@media (max-width: 650px) {  
+  /*Header*/
+  .header {
+    background-image: linear-gradient(5deg, #1C0F16 10%, #A14A37 70%, #FFFFE5 90%);
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: medium;
+    color: rgb(255, 255, 255);
+    width: 110%;
+  }
+  /*"Enter Date"*/
+  p {
+    font-size: smaller;
+    margin: 20px;
+    padding-left: 20px;
+    padding-top: 150px;
+    padding-bottom: 150px;
+
+    width: 100%;
+    color: whitesmoke;
+  }
+  /*"Rocket"*/
+  #backgroundImage {
+    background-image: url("./Images/mobilerocket.jpg");
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    background-size: 100% auto;
+
+    background-size: cover;
+    background-attachment:fixed 
+  }
+    /*"sidebar"*/
+  .sidenav {
+    height: 500px; /* Specify a height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+    }
+    /*"Page Container"*/
+    #rowrowyouboat{
+      display: flex;
+      flex-direction: column; 
+    }
+    .column{
+      display: flex;
+      flex-direction: column;
+    }
+    .blue-column {
+      background-image: url("./Images/armageddon-2104385_1280.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 50vh;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .blue-column p {
+      font-size: smaller;
+      color: white;
+      padding: 0;
+    }
+    
+    .blue-column h1 {
+      font-size:medium;
+      color: white;
+      padding: 10px;
+    }
+    
+    .green-column{
+      width: 100%;
+      background-color: transparent;
+    
+    }
+
+    .yellow-column{
+      background-color: transparent;
+    
+    }
+    #POTD{
+      min-height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    #desciptionPOTD{
+      font-size: medium;
+      font-family: Arial, Helvetica, sans-serif;
+      word-wrap: break-word;
+      width: 100%;
+      padding: 5px;
+      background-color: var(--dark);
+      color: var(--yellow);
+    }
+    
+    #headerPOTD, #author,#title{
+      background-color: var(--light);
+      justify-content: center;
+      color: var(--dark-blue);
+      border-right: 10px solid var(--red);
+      border-left: 10px solid var(--red);
+    
+    }
+}

@@ -81,7 +81,7 @@ function getPictureSecond(){
       getAsteroidUrl2();
       //POTD
     });
-  
+    
 }
 
 var blueColumn = document.querySelector(".blue-column");
@@ -195,4 +195,25 @@ function checkUndefined(x){
   }
   return false;
 }
+function sideControl(){
+  //<span class="close-button" onclick="closeNav()">&times;</span>
+  //<span class="close-button" onclick="openNav()">&#9776;</span>
+  var element = document.getElementById("sidenavMobile").style.width;
+  console.log(element);
+  if (element == '0px'){
+    document.getElementById("sidenavMobile").style.width = "200px";
+    console.log('HHH');
+  }
+  else{
+    document.getElementById("sidenavMobile").style.width = "0px";
+    console.log('WWW');
+  }
 
+}
+function openNav() {
+  document.getElementById("sidenavMobile").style.width = "200px";
+}
+
+function closeNav() {
+  document.getElementById("sidenavMobile").style.width = "0";
+}
