@@ -22,6 +22,8 @@ function localStore() {
             btn.innerHTML = date;
             btn.setAttribute('class', 'saved');
             btn.setAttribute('id', date);
+            btn.style.backgroundColor =  'var(--red)';
+            btn.style.color =  'white';
             btn.addEventListener("click", function(event) {
                 console.log(event.target.id)
                 date = event.target.id;
